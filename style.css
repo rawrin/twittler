@@ -1,0 +1,36 @@
+body {
+	background: #8ed6e0;
+	margin: 0;
+	padding: 0;
+}
+
+#tweetBody {
+	background: #8ed6e0;
+	border-radius: 10px;
+	width: 0 auto;
+	margin: 150px 500px 150px 800px;
+}
+.tweetBox {
+	background: #e8f6f8;
+	border: 1px outset;
+	border-radius: 10px;
+	text-align: left;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	margin-bottom: 5px;
+}
+
+.tweetName {
+	font-weight: bold;
+	padding: 15px 0 0 15px;
+}
+
+.tweetMsg {
+	padding: 0 0 0 15px;
+}
+
+.tweetCreated {
+	font-style: italic;
+	font-size: .75em;
+	padding: 0 0 5px 15px;
+}

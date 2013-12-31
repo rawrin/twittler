@@ -1,27 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src="jquery.js"></script>
-    <script src="data_generator.js"></script>
-  </head>
-  <body>
-    <script>
+<head>
+  <script src="jquery.js"></script>
+  <script src="data_generator.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <script>
 
-      $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+  $(document).ready(function(){
+    var $body = $('body');
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
+    var displayTweets = function() {
+      var index = streams.home.length - 1;
+      while(index >= 0){
+        var tweet = streams.home[index];
 
-      });
+        $tweet = $('' + '<div class="tweetBox">' + 
+          '<div class="tweetName">' + 
+          '@' + tweet.user + 
+          '</div>' + 
+          '<p class="tweetMsg">' + 
+          tweet.message + 
+          '</p>' + 
+          '<div class="tweetCreated">' + 
+          tweet.created_at + 
+          '</div>' + 
+          '</div>');
 
-    </script>
-  </body>
+        $tweet.prependTo("#tweetBody");
+        index -= 1;
+      }
+    };
+
+
+
+    $("#newTweetsBtn").on("click", function(){
+      displayTweets();
+    });
+
+    displayTweets();
+  });
+
+  </script>
+  <div class="container">
+    <button id="newTweetsBtn">New Tweets Available</button>
+    <div id="tweetBody"></div>
+  </div>
+</body>
 </html>
