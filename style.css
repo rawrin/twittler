@@ -6,29 +6,40 @@ body {
 	padding: 0;
 }
 
+#header {
+	margin: 40px 500px 40px 800px;
+	font: 5em verdana, serif;
+	font-weight: bold;
+}
+
 #tweetBody {
 
 	border-radius: 10px;
 	width: 0 auto;
 	height: 800px;
-	margin: 0px 500px 60px 800px;
+	margin: 0px 500px 50px 800px;
 	overflow-y: auto;
 }
 
 #newTweet {
 	background: #e8f6f8;
-	border: 2px outset;
+	border: 1px solid;
 	border-radius: 10px;
 	text-align: center;
-	font:1.20em arial, sans-serif;
+	font:1.25em arial, sans-serif;
 	font-weight: bold;
-	margin: 100px 500px 5px 800px;
+	margin: 0px 500px 5px 800px;
 	padding: 5px 0 5px 0;
+}
+
+#newTweetWrapper {
+	text-decoration: none;
+	display:block;
 }
 
 .oneTweet {
 	background: #e8f6f8;
-	border: 2px outset;
+	border: 1px solid;
 	border-radius: 10px;
 	text-align: left;
 	padding-bottom: 10px;
@@ -37,13 +48,16 @@ body {
 }
 
 .tweetName {
+	color: #00688B;
 	font-weight: bold;
 	font:1.25em arial, sans-serif;
 	padding: 15px 0 0 15px;
+	margin-bottom: 0;
 }
 
 .tweetMsg {
 	padding: 0 0 0 15px;
+	font:1em verdana, sans-serif;
 }
 
 .tweetCreated {

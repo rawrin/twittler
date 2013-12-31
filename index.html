@@ -28,7 +28,7 @@
           '</div>' + 
           '</div>');
 
-        $tweet.hide().appendTo("#tweetBody").slideDown('slow');
+        $tweet.hide().appendTo("#tweetBody").slideDown(500);
         index -= 1;
       }
     };
@@ -45,11 +45,13 @@
 
   </script>
   <div class="container">
+    <div id="header">
+      Twittler
+    </div>
     <div id="newTweet">
-      Load New Tweets
+        <a href="#" id="newTweetWrapper">Load New Tweets</a>
     </div>
-    <div id="tweetBody">
-    </div>
+    <div id="tweetBody"></div>
   </div>
 </body>
 </html>
