@@ -16,7 +16,7 @@
       while(index >= 0){
         var tweet = streams.home[index];
 
-        $tweet = $('' + '<div class="tweetBox">' + 
+        $tweet = $('' + '<div class="oneTweet">' + 
           '<div class="tweetName">' + 
           '@' + tweet.user + 
           '</div>' + 
@@ -28,14 +28,15 @@
           '</div>' + 
           '</div>');
 
-        $tweet.prependTo("#tweetBody");
+        $tweet.hide().appendTo("#tweetBody").slideDown('slow');
         index -= 1;
       }
     };
 
 
 
-    $("#newTweetsBtn").on("click", function(){
+    $("#newTweet").on("click", function(){
+      $('.oneTweet').remove();
       displayTweets();
     });
 
@@ -44,8 +45,11 @@
 
   </script>
   <div class="container">
-    <button id="newTweetsBtn">New Tweets Available</button>
-    <div id="tweetBody"></div>
+    <div id="newTweet">
+      Load New Tweets
+    </div>
+    <div id="tweetBody">
+    </div>
   </div>
 </body>
 </html>
