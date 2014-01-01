@@ -1,40 +1,24 @@
 body {
 	background-image: url('background.jpg');
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: cover;
+	background-attachment: fixed;
 	margin: 0;
 	padding: 0;
 }
 
 #header {
-	margin: 40px 500px 40px 800px;
+	margin: 40px 0 40px 0;
 	font: 5em verdana, serif;
 	font-weight: bold;
+	text-align: center;
+	color: white;
 }
+
 
 #tweetBody {
-
-	border-radius: 10px;
-	width: 0 auto;
-	height: 800px;
-	margin: 0px 500px 50px 800px;
-	overflow-y: auto;
-}
-
-#newTweet {
-	background: #e8f6f8;
-	border: 1px solid;
-	border-radius: 10px;
-	text-align: center;
-	font:1.25em arial, sans-serif;
-	font-weight: bold;
-	margin: 0px 500px 5px 800px;
-	padding: 5px 0 5px 0;
-}
-
-#newTweetWrapper {
-	text-decoration: none;
-	display:block;
+	height: 40em;
+	overflow-y: scroll;
 }
 
 .oneTweet {
@@ -64,4 +48,15 @@ body {
 	font-style: italic;
 	font-size: .75em;
 	padding: 0 0 5px 15px;
+}
+
+#newTweet {
+	background: #e8f6f8;
+	border: 1px solid;
+	border-radius: 10px;
+	text-align: center;
+	font:1.25em arial, sans-serif;
+	font-weight: bold;
+	margin-bottom: 5px;
+	padding: 5px 0 5px 0;
 }
