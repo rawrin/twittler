@@ -13,7 +13,7 @@
   $(document).ready(function(){
     var $body = $('body');
 
-    var displayCount = streams.home.length - 1;
+    //var displayCount = streams.home.length - 1;
     var openTweets;
 
     var displayTweets = function(user) {
@@ -53,12 +53,20 @@
       }
     };
 
-    var tweetCount = function() {
+    var tweetCount = function(user) {
       setInterval (function() {
-        var fullCount = streams.home.length - 1;
-        if (fullCount > displayCount) {
-          openTweets = fullCount - displayCount;
-          $('#newTweet').text(openTweets + ' Tweets Available');
+        if (user) {
+          var fullCount = streams.users[user].length - 1;
+          if (fullCount > displayCount) {
+            openTweets = fullCount - displayCount;
+            $('#newTweet').text(openTweets + ' Tweets Available');
+          }
+        } else {
+          var fullCount = streams.home.length - 1;
+          if (fullCount > displayCount) {
+            openTweets = fullCount - displayCount;
+            $('#newTweet').text(openTweets + ' Tweets Available');
+          }
         }
       }, 1500)
     };
@@ -80,7 +88,13 @@
       displayTweets();
     });
 
-    $('#tweetBody')
+    $('#tweetBody').on("click", 'a', function(){
+      $('.oneTweet').remove();
+      var user = this.getAttribute('class');
+      clearInterval(tweetCount);
+      tweetCount(user);
+      displayTweets(user);
+    });
 
     $(window).scroll(function () {
       if ($(this).scrollTop() > 100) {
@@ -97,9 +111,9 @@
       return false;
     });
 
+    tweetCount();
     userDropdown();
     displayTweets();
-    tweetCount();
 
   });
 
