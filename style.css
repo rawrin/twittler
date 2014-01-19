@@ -15,9 +15,9 @@ body {
 
 #headStyle {
 	font: 4em verdana, serif;
-	//font-weight: bold;
+	font-weight: bold;
 	color: white;
-	letter-spacing: 5px;
+	letter-spacing: 3px;
 	text-decoration: none;
 }
 

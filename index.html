@@ -13,7 +13,6 @@
   $(document).ready(function(){
     var $body = $('body');
 
-    //var displayCount = streams.home.length - 1;
     var openTweets;
 
     var displayTweets = function(user) {
@@ -48,25 +47,35 @@
       }
       if (user) {
         displayCount = streams.users[user].length - 1;
+        clearInterval(tweetID);
+        userTweetCount(user);
       } else {
         displayCount = streams.home.length - 1;
+        clearInterval(userTweetID);
+        tweetCount();
       }
     };
-
-    var tweetCount = function(user) {
-      setInterval (function() {
-        if (user) {
-          var fullCount = streams.users[user].length - 1;
-          if (fullCount > displayCount) {
-            openTweets = fullCount - displayCount;
-            $('#newTweet').text(openTweets + ' Tweets Available');
-          }
-        } else {
-          var fullCount = streams.home.length - 1;
-          if (fullCount > displayCount) {
-            openTweets = fullCount - displayCount;
-            $('#newTweet').text(openTweets + ' Tweets Available');
-          }
+    var tweetID;
+    var tweetCount = function () {
+      tweetID = 
+      setInterval (function () {
+        console.log("tweetCount firing");
+        var fullCount = streams.home.length - 1;
+        if (fullCount > displayCount) {
+          openTweets = fullCount - displayCount;
+          $('#newTweet').text(openTweets + ' Tweets Available');
+        }
+      }, 1500)
+    };
+    var userTweetID;
+    var userTweetCount = function (user) {
+      userTweetID = 
+      setInterval (function () {
+        console.log("userTweet firing");
+        var fullCount = streams.users[user].length - 1;
+        if (fullCount > displayCount) {
+          openTweets = fullCount - displayCount;
+          $('#newTweet').text(openTweets + ' Tweets Available');
         }
       }, 1500)
     };
@@ -80,6 +89,8 @@
 
     $("#home").on("click", function(){
       $('.oneTweet').remove();
+      clearInterval(userTweetID);
+      clearInterval(tweetID);
       displayTweets();
     });
 
@@ -91,8 +102,6 @@
     $('#tweetBody').on("click", 'a', function(){
       $('.oneTweet').remove();
       var user = this.getAttribute('class');
-      clearInterval(tweetCount);
-      tweetCount(user);
       displayTweets(user);
     });
 
@@ -111,7 +120,6 @@
       return false;
     });
 
-    tweetCount();
     userDropdown();
     displayTweets();
 
