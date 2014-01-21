@@ -14,14 +14,19 @@
     var $body = $('body');
 
     var openTweets;
+    var nowView;
 
     var displayTweets = function(user) {
       if (user) {
         var index = streams.users[user].length - 1;
-        $("#nowViewing").text("Now Viewing: " + user);
+        $(".viewing").remove();
+        $("#nowViewing").append('<p class=\'viewing\'>' + "Now Viewing: " + user + '</p>');
+        nowView = user;
       } else {
         var index = streams.home.length - 1;
-        $("#nowViewing").text("Now Viewing: Home");
+        $(".viewing").remove();
+        $("#nowViewing").append('<p class=\'viewing\'>' + "Now Viewing: Home" + '</p>');
+        nowView = "home";
       }
       while(index >= 0){
         if (user) {
@@ -48,9 +53,11 @@
       if (user) {
         displayCount = streams.users[user].length - 1;
         clearInterval(tweetID);
+        clearInterval(userTweetID);
         userTweetCount(user);
       } else {
         displayCount = streams.home.length - 1;
+        clearInterval(tweetID);
         clearInterval(userTweetID);
         tweetCount();
       }
@@ -82,10 +89,16 @@
 
     var userDropdown = function () {
       for (var i = 0; i <= users.length - 1; i++) {
-        var $username = $('<li>'+ '<a href=#>' + users[i] + '</a>' + '</li>');
+        var $username = $('<li>'+ '<a href=# class=' + users[i] + '>' + users[i] + '</a>' + '</li>');
         $username.appendTo('.dropdown-menu');
       }
     };
+
+    $('.dropdown-menu').on("click", 'a', function() {
+      $('.oneTweet').remove();
+      var user = this.getAttribute('class');
+      displayTweets(user);
+    })
 
     $("#home").on("click", function(){
       $('.oneTweet').remove();
@@ -96,7 +109,11 @@
 
     $('#newTweet').on("click", function(){
       $('.oneTweet').remove();
-      displayTweets();
+      if (nowView == "home") {
+        displayTweets();
+      } else {
+        displayTweets(nowView);
+      }
     });
 
     $('#tweetBody').on("click", 'a', function(){
@@ -152,7 +169,7 @@
   <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4" id="viewStyle">
-      <p id="nowViewing"></p>
+      <div id="nowViewing"></div>
     </div>
     <div class="col-md-4"></div>
   </div>
